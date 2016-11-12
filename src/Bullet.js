@@ -1,9 +1,7 @@
 import { Vector2 } from 'three';
-import shoot from './audio/shoot.mp3';
 
 export default class Bullet {
 	constructor(player, x, y) {
-		this.audio = new Audio(shoot);
 		this.player = player;
 		this.x = player.x;
 		this.y = player.y - player.r/3;
@@ -41,8 +39,7 @@ export default class Bullet {
 
 		if (dist > this.player.r - this.r/2 && !this.launched) {
 			// console.log('launched');
-			const fireSound = new Audio(shoot);
-			fireSound.play();
+			
 			this.createLaunchParticles(50);
 			this.launched = true;
 		}

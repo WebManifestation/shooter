@@ -1,4 +1,5 @@
 import Bullet from './Bullet';
+import shoot from './audio/shoot.mp3';
 
 export default class Player {
 	constructor(ctx,r) {
@@ -6,6 +7,7 @@ export default class Player {
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
 
+		this.audio = new Audio(shoot);
 
 		this.x = w/2;
 		this.y = h + r/3;
@@ -73,7 +75,8 @@ export default class Player {
 	fire(x,y) {
 		// console.log(x,y);
 		// this.audio.load();
-		
+		const fireSound = new Audio(shoot);
+		fireSound.play();
 		this.bullets.push(new Bullet(this,x,y));
 		// this.audio.play();
 		// console.log(this.bullets);
