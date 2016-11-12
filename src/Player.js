@@ -1,10 +1,13 @@
 import Bullet from './Bullet';
+import shoot from './audio/shoot.mp3';
 
 export default class Player {
 	constructor(ctx,r) {
 
+		this.audio = new Audio(shoot);
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
+
 
 		this.x = w/2;
 		this.y = h/2;
@@ -70,8 +73,12 @@ export default class Player {
 
 	fire(x,y) {
 		// console.log(x,y);
+		// this.audio.load();
+		const sound = new Audio(shoot);
+		sound.play();
 		this.bullets.push(new Bullet(this,x,y));
-		console.log(this.bullets);
+		// this.audio.play();
+		// console.log(this.bullets);
 	}
 
 	screenResize(ctx) {

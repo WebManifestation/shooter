@@ -30,7 +30,7 @@ export default class Bullet {
 		const dist = Math.sqrt(Math.pow(this.player.x - this.x,2)+Math.pow(this.player.y - this.y,2));
 		// console.log(dist);
 		if (dist > this.player.r && !this.launched) {
-			console.log('launched');
+			// console.log('launched');
 			this.launched = true;
 		}
 	}
