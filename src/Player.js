@@ -74,8 +74,8 @@ export default class Player {
 	fire(x,y) {
 		// console.log(x,y);
 		// this.audio.load();
-		const sound = new Audio(shoot);
-		sound.play();
+		const fireSound = new Audio(shoot);
+		fireSound.play();
 		this.bullets.push(new Bullet(this,x,y));
 		// this.audio.play();
 		// console.log(this.bullets);
