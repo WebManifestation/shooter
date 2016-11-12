@@ -1,20 +1,19 @@
 import Bullet from './Bullet';
-import shoot from './audio/shoot.mp3';
 
 export default class Player {
 	constructor(ctx,r) {
 
-		this.audio = new Audio(shoot);
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
 
 
 		this.x = w/2;
-		this.y = h/2;
+		this.y = h + r/3;
 		this.targetX = w/2;
 		// this.preY = h + r/3;
 		this.r = r;
-		this.color = 'hsla(120,60%,50%,1)';
+		// this.color = 'limegreen';
+		this.color = 'hsla(120,61%,50%,1)';
 		this.bullets = [];
 		this.v = 5;
 		// this.moving = 0;
@@ -23,7 +22,7 @@ export default class Player {
 	renderBullets(ctx) {
 		for (var i = this.bullets.length - 1; i >= 0; i--) {
 			this.bullets[i].render(ctx);
-			if (this.bullets[i].x > ctx.canvas.width || this.bullets[i].x < 0 || this.bullets[i].y > ctx.canvas.height || this.bullets[i].y < 0) {
+			if (this.bullets[i].x > ctx.canvas.width + 30 || this.bullets[i].x < -30 || this.bullets[i].y > ctx.canvas.height + 30 || this.bullets[i].y < 0 - 30) {
 				this.bullets.splice(i,1);
 			}
 		}
@@ -74,8 +73,7 @@ export default class Player {
 	fire(x,y) {
 		// console.log(x,y);
 		// this.audio.load();
-		const fireSound = new Audio(shoot);
-		fireSound.play();
+		
 		this.bullets.push(new Bullet(this,x,y));
 		// this.audio.play();
 		// console.log(this.bullets);

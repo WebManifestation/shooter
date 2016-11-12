@@ -8,6 +8,7 @@ class App extends Component {
 		this.w = this.c.width = window.innerWidth;
 		this.h = this.c.height = window.innerHeight;
 		this.ctx = this.c.getContext('2d');
+		this.bgColor = 'black';
 		this.tick = 0;
 		this.animationId = requestAnimationFrame( this.loop.bind(this) );
 
@@ -20,7 +21,7 @@ class App extends Component {
 		// window.addEventListener('keydown',this.handelKeyPress.bind(this));
 
 		// console.log(Player);
-		this.shooter = new Player(this.ctx,50);
+		this.shooter = new Player(this.ctx,100);
 
 	}
 
@@ -51,7 +52,7 @@ class App extends Component {
 
 		this.animationId = requestAnimationFrame( this.loop.bind(this) );
 		++this.tick;
-		this.ctx.fillStyle = 'hsla(240,50%,50%,1)';
+		this.ctx.fillStyle = this.bgColor;
 		this.ctx.fillRect(0,0,this.w,this.h);
 
 		this.shooter.render(this.ctx);
