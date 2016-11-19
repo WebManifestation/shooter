@@ -4,7 +4,7 @@ export default class Bullet {
 	constructor(player, x, y) {
 		this.player = player;
 		this.x = player.x;
-		this.y = player.y - player.r/3;
+		this.y = player.y - player.r/2;
 		this.r = 5;
 		this.color = 'gold';
 		this.v = 3;
@@ -51,11 +51,14 @@ export default class Bullet {
 		for (var i = n - 1; i >= 0; i--) {
 			// console.log(n);
 			const v = Math.random();
+			const randDelta = 7;
 			const randPercent = 0.5;
 			const newDx = (Math.random() < .5) ? this.direction.x - Math.random()*randPercent : this.direction.x + Math.random()*randPercent;
-			const newY = (Math.random() < .5) ? this.direction.y - Math.random()*randPercent : this.direction.y + Math.random()*randPercent;
-			const newDirection = new Vector2(newDx, newY).normalize();
-			const particle = { x: this.x, y: this.y, v, direction: newDirection, opacity: 1 };
+			const newDy = (Math.random() < .5) ? this.direction.y - Math.random()*randPercent : this.direction.y + Math.random()*randPercent;
+			const newX = (Math.random() < .5) ? this.x - Math.random()*randDelta : this.x + Math.random()*randDelta;
+			const newY = (Math.random() < .5) ? this.y - Math.random()*randDelta : this.y + Math.random()*randDelta;
+			const newDirection = new Vector2(newDx, newDy).normalize();
+			const particle = { x: newX, y: newY, v, direction: newDirection, opacity: 1 };
 			this.launchParticles.push(particle);
 		}
 		this.launchParticlesActive = false;

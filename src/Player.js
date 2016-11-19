@@ -18,13 +18,15 @@ export default class Player {
 		this.color = 'hsla(120,61%,50%,1)';
 		this.bullets = [];
 		this.v = 5;
+		this.bulletBuffer = false;
 		// this.moving = 0;
 	}
 
 	renderBullets(ctx) {
+		const boundryOffset = 50;
 		for (var i = this.bullets.length - 1; i >= 0; i--) {
 			this.bullets[i].render(ctx);
-			if (this.bullets[i].x > ctx.canvas.width + 30 || this.bullets[i].x < -30 || this.bullets[i].y > ctx.canvas.height + 30 || this.bullets[i].y < 0 - 30) {
+			if (this.bullets[i].x > ctx.canvas.width + boundryOffset || this.bullets[i].x < -boundryOffset || this.bullets[i].y > ctx.canvas.height + boundryOffset || this.bullets[i].y < 0 - boundryOffset) {
 				this.bullets.splice(i,1);
 			}
 		}
@@ -73,11 +75,17 @@ export default class Player {
 	}
 
 	fire(x,y) {
+
+		if (!this.bulletBuffer) {
+			const fireSound = new Audio(shoot);
+			fireSound.play();
+			this.bullets.push(new Bullet(this,x,y));
+			this.bulletBuffer = true;
+
+			setTimeout(()=>{this.bulletBuffer=false}, 250);
+		}
 		// console.log(x,y);
 		// this.audio.load();
-		const fireSound = new Audio(shoot);
-		fireSound.play();
-		this.bullets.push(new Bullet(this,x,y));
 		// this.audio.play();
 		// console.log(this.bullets);
 	}
