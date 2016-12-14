@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Player from './Player';
+import Enemy from './Enemy';
 
 class App extends Component {
 	componentDidMount() {
@@ -22,7 +23,8 @@ class App extends Component {
 
 		// console.log(Player);
 		this.shooter = new Player(this.ctx,100);
-
+		this.enemies = [];
+		this.enemies.push(new Enemy(this.ctx,this.w/2,this.h/4,30));
 	}
 
 	handelClick(e) {
@@ -54,6 +56,15 @@ class App extends Component {
 		++this.tick;
 		this.ctx.fillStyle = this.bgColor;
 		this.ctx.fillRect(0,0,this.w,this.h);
+
+		for (var i = this.enemies.length - 1; i >= 0; i--) {
+			this.enemies[i].changeDirection(this.shooter.bullets);
+			this.enemies[i].render(this.ctx);
+			const isHit = this.enemies[i].hitDetection(this.shooter.bullets);
+			if (isHit) {
+				this.enemies.splice(i,1);
+			}
+		}
 
 		this.shooter.render(this.ctx);
 	}
