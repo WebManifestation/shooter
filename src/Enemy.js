@@ -16,7 +16,7 @@ export default class Enemy {
 		// console.log('direction',this.direction );
 		// console.log('px,py',player.x,player.y);
 		// console.log('angle',this.player.angle());
-		console.log(ctx);
+		// console.log(ctx);
 	}
 
 	makeRand(min,max) {
@@ -52,11 +52,12 @@ export default class Enemy {
 				bullets[i].x - bullets[i].r <= this.x + this.size &&
 				bullets[i].y - bullets[i].r <= this.y + this.size &&
 				bullets[i].y + bullets[i].r >= this.y) {
-				console.log('hit');
+				// console.log('hit');
 				// this.color = 'black';
 				return true;
 			} else {
-				return false;
+				// console.log(bullets);
+				// return false;
 			}
 			// console.log(this.x,this.y);
 			// console.log(bullets[i].x,bullets[i].y);
@@ -68,7 +69,7 @@ export default class Enemy {
 		const { color, size, x, y } = this;
 		ctx.beginPath();
 		ctx.rect(x,y,size,size);
-		ctx.fillStyle = this.color;
+		ctx.fillStyle = color;
 		ctx.fill();
 	}
 }

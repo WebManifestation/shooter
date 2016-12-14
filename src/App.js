@@ -25,6 +25,12 @@ class App extends Component {
 		this.shooter = new Player(this.ctx,100);
 		this.enemies = [];
 		this.enemies.push(new Enemy(this.ctx,this.w/2,this.h/4,30));
+		this.enemies.push(new Enemy(this.ctx,this.w/4,this.h/4,30));
+		this.enemies.push(new Enemy(this.ctx,this.w/1.25,this.h/4,30));
+
+		// this.enemies.push(new Enemy(this.ctx,this.w/2,this.h/2,30));
+		// this.enemies.push(new Enemy(this.ctx,this.w/4,this.h/2,30));
+		// this.enemies.push(new Enemy(this.ctx,this.w/1.25,this.h/2,30));
 	}
 
 	handelClick(e) {
